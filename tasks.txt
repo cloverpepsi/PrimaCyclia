@@ -1,17 +1,10 @@
 Tasks:
 * strings --onlyOnChange
 * intermediary --onlyOnChange
-* newMod -name "PrimaCyclia"
-* copy -toMod "PrimaCyclia" -from "D:\C#_projects\PrimaCyclia\modMeta.jsonc"
-* copy -toMod "PrimaCyclia" -from "D:\C#_projects\PrimaCyclia\bin\Release\net10.0\PrimaCyclia.dll"
-* copy -toMod "PrimaCyclia" -from "D:\C#_projects\PrimaCyclia\Content"
 * devMerge --onlyOnChange --mergeXML -id "prima_cyclia" 
 * merge --onlyOnChange --asNamed
-* export -name "PrimaCyclia" -outputPath "D:\C#_projects\PrimaCyclia\TestEnvironment\_builds"
+* export -name "PrimaCyclia" -outputPath "C:\Program Files (x86)\Steam\steamapps\common\Opus Magnum\modded\Mods\PrimaCyclia\PrimaCyclia\bin"
 * run --readLogs -args "-devEnv -pseudoLang"
 
 AutoExit:
   false
-
-# CopyTasksPath:
-# D:\C#_projects\PrimaCyclia

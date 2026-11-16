@@ -101,20 +101,6 @@ public static class Parts {
         Volume.SetVolume(SublimationProduction[1], 0.3f);
         Volume.SetVolume(SublimationProduction[2], 0.3f);
     }
-
-    public static void drawSelectionGlow(SolutionEditorBase seb_self, Part part, Vector2 pos, float alpha) {
-        var cageSelectGlowTexture = Assets.textures.select.cage;
-        int armLength = 1; // part.method_1165()
-        IntermediatePartState class236 = seb_self.GetIntermState(part, pos);
-        Color color = Color.White.WithAlpha(alpha);
-
-        patch_SolutionEditorBase.RenderArmSelection(armLength, HexArmRotations, class236, color);
-        for (int index = 0; index < 6; ++index) {
-            float num = index * sixtyDegrees;
-            patch_SolutionEditorBase.RenderRotated(cageSelectGlowTexture, color, class236.pos, class236.rotation + num);
-        }
-    }
-
     private static AtomType GetPrime(int i) {
         while (i < 0) {i += 4;}
         while (i > 3) {i -= 4;}
@@ -180,7 +166,7 @@ public static class Parts {
 
         QApi.AddPartTypeToPanel(Tolomeo, PartTypes.berlosWheel);
         PrimaCyclia.Instance.AddPuzzlePermission("tolomeos_wheel");
-        PrimaCyclia.Instance.AddPartType(Tolomeo, "tolomeos_wheel", RenderTolomeoPart);
+        PrimaCyclia.Instance.AddPartType(Tolomeo, "tolomeos_wheel");
 
         Primality = new() {
             cost = 20,
@@ -383,24 +369,6 @@ public static class Parts {
         return false;
     }
 
-    static void RenderTolomeoPart(Part part, Vector2 pos, SolutionEditorBase editor, PartRenderer renderer) {
-        // draw atoms, if the simulation is stopped - otherwise, the running simulation will draw them
-        if (editor.GetSimPlayState() == SimPlayState.Stopped) {
-            drawTolomeoAtoms(editor, part, pos);
-        }
-
-        // draw arm stubs
-        IntermediatePartState class236 = editor.GetIntermState(part, pos);
-        patch_SolutionEditorBase.RenderArmLights(part.GetArmLength(), HexArmRotations, class236);
-
-        // draw cages
-        PartSimState partSimState = editor.GetSimulation().GetSimState(part);
-        for (int i = 0; i < 6; i++) {
-            float radians = renderer.partRotation + (i * sixtyDegrees);
-            Vector2 vector2_9 = renderer.partPos + hexGraphicalOffset(new HexIndex(1, 0)).Rotated(radians);
-            patch_SolutionEditorBase.RenderLights(atomCageLighting, vector2_9, new Vector2(39f, 33f), radians);
-        }
-    }
     static void RenderPrimality(Part part, Vector2 pos, SolutionEditorBase editor, PartRenderer renderer) {
         Vector2 vector10 = new(41f, 48f);
         renderer.RenderBase(Assets.textures.parts.projection_glyph.@base, new Vector2(-1f, -1f), vector10, 0f);
@@ -497,12 +465,5 @@ public static class Parts {
         renderer.RenderUpright(Assets.textures.parts.animismus.symbol_salt, hex_left, new Vector2(2, 0));
         renderer.RenderUpright(prime_symbols, hex_right, Vector2.Zero);
         //renderer.RenderBase(Assets.textures.parts.field_173, offset + new Vector2(-72f, -27f));
-    }
-    public static void drawTolomeoAtoms(SolutionEditorBase seb_self, Part part, Vector2 pos) {
-        if (part.GetType() != Tolomeo) return;
-        PartSimState partSimState = seb_self.GetSimulation().GetSimState(part);
-
-        IntermediatePartState class236 = seb_self.GetIntermState(part, pos);
-        Editor.RenderMolecule(GetTolomeoWheelAtoms(partSimState), class236.pos, center, class236.rotation, 1f, 1f, 1f, false, seb_self);
     }
 }

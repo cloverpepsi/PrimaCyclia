@@ -5,7 +5,6 @@ namespace PrimaCyclia;
 
 public class PrimaCyclia : QuintessentialMod {
     public static PrimaCyclia Instance { get; }
-    public static Quintessential.Logging.Logger Logger => Instance.Log;
     public override string ModId => "prima_cyclia";
     
     public override void Load() { }

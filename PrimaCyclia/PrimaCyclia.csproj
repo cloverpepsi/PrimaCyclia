@@ -7,17 +7,11 @@
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <PropertyGroup>
-	  <!-- Path to Opus Magnum folder, Contains Lightning.exe et.al -->
-	  <OpusDir>.\TestEnvironment\modded</OpusDir>
-  </PropertyGroup>
-	
-  <ItemGroup>
-    <Compile Remove="TestEnvironment\**" />
-    <EmbeddedResource Remove="TestEnvironment\**" />
-    <None Remove="TestEnvironment\**" />
-  </ItemGroup>
+    
+	<PropertyGroup>
+		<!-- Path to Opus Magnum folder, Contains Lightning.exe et.al -->
+		<OpusDir>C:\Program Files (x86)\Steam\steamapps\common\Opus Magnum\modded</OpusDir>
+	</PropertyGroup>
 
   <ItemGroup>
 	<Reference Include="DevLightning">

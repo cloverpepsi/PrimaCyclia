@@ -133,10 +133,10 @@ internal class EmpowermentGlyph {
                             HexIndex h1 = other.GlobalPosFromLocal(bonder.hexPos1);
                             HexIndex h2 = other.GlobalPosFromLocal(bonder.hexPos2);
                             if (sim.FindAtom(h1).GetOrDefault(out AtomReference atom1) && sim.FindAtom(h2).GetOrDefault(out AtomReference atom2)) {
-                                PrimaCyclia.Logger.Critical("Found - 1");
+                                //PrimaCyclia.Logger.Critical("Found - 1");
                                 Molecule subject = atom1.molecule;
                                 if (subject == atom2.molecule) {
-                                    PrimaCyclia.Logger.Critical("Found - 2");
+                                    //PrimaCyclia.Logger.Critical("Found - 2");
                                     bool wasAnyAdded = false;
                                     foreach (BondType bondType in bonder.bondTypes) {
                                         BondTexture bondTexture = bondType.bondTexture;
@@ -149,7 +149,7 @@ internal class EmpowermentGlyph {
                                         }
                                     }
                                     if (wasAnyAdded) {
-                                        PrimaCyclia.Logger.Critical("Found - 3");
+                                        //PrimaCyclia.Logger.Critical("Found - 3");
                                         Parts.EmpowermentBonds[index].PlaySound(sim.solutionEditor.GetVolumeMultiplier());
                                         emp.canBond[index] = false;
                                     }
