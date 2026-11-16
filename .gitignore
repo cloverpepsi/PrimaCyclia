@@ -57,3 +57,8 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Runtime
+.vs
+TestEnvironment/
+/PrimaCyclia.csproj.user

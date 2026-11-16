@@ -1,0 +1,61 @@
+{
+  "prima_cyclia": {
+    "": "Prima Cyclia",
+    "description": "Temporary description",
+    "atoms": {
+      "sulfur": "Sulfur",
+      "oxygen": "Oxygen",
+      "phlogiston": "Phlogiston"
+    },
+    "parts": {
+      "tolomeos_wheel": {
+        "": "Tolomeo's Wheel",
+        "description": "By using Tolomeo's wheel with the glyph of primality, neutral salt can be turned into any prime within the cycle of primes."
+      },
+      "primality": {
+        "": "Glyph of Primality",
+        "description": "The glyph of primality transforms an atom of salt into any atom within the cycle of primes."
+      },
+      "neutrality": {
+        "": "Glyph of Neutrality",
+        "description": "The glyph of neutrality converts one atom of sulfur and one atom of quicksilver into a single neutral salt."
+      },
+      "cyclicity": {
+        "": "Glyph of Cyclicity",
+        "description": "The glyph of cyclicity takes atoms of non-neutral primes and progresses them to their next step in the cycle of primes."
+      },
+      "polarity": {
+        "": "Glyph of Polarity",
+        "description": "The glyph of polarity consumes salt, and in turn inverts atoms of non-neutral primes to their opposite in the cycle of primes."
+      },
+      "combustion": {
+        "": "Glyph of Combustion",
+        "description": "The glyph of combustion takes two different volatile atoms and turns them into two of the third volatile. It can also turn two sulfur into one each of the other volatiles."
+      },
+      "sublimation": {
+        "": "Glyph of Sublimation",
+        "description": "The glyph of sublimation violently consumes any atom it receives, producing sulfur in return. The amount of sulfur produced is equal to the \"weight\" of the atom.\n\nMost atoms have a weight of 1, quintessence has a weight of 4, and all metals have a weight equal to their metallicity. All volatile atoms, however, do not produce any sulfur when consumed by this glyph."
+      },
+      "empowerment": {
+        "": "Glyph of Empowerment",
+        "description": "The glyph of empowerment consumes atoms of oxygen to unlock the full potential of a glyph of triplex-bonding, allowing any two atoms to be triplex bonded.\n\nIn turn, once all three parts of a triplex bond have been made, an atom of Phlogiston is produced, and the bonding glyph will once again be limited in its power."
+      }
+    },
+    "permission_sections": "Prima Cyclia",
+    "permissions": {
+      "tolomeos_wheel": "Tolomeo's Wheel",
+      "primality": "Glyph of Primality",
+      "neutrality": "Glyph of Neutrality",
+      "cyclicity": "Glyph of Cyclicity",
+      "polarity": "Glyph of Polarity",
+      "combustion": "Glyph of Combustion",
+      "sublimation": "Glyph of Sublimation",
+      "empowerment": "Glyph of Empowerment"
+    },
+    "molecule_prefix": {
+      "sulfur": "Volatile {0}",
+      "oxygen": "Oxidized {0}",
+      "phlogiston": "Phlogisticated {0}"
+    }
+  }
+}

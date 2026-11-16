@@ -1,0 +1,25 @@
+{
+  "prima_cyclia:$sublimation_weight": {
+    // Cardinals & Quint
+    "om:quintessence": ":4",
+    "om:air": ":1",
+    "om:earth": ":1",
+    "om:fire": ":1",
+    "om:water": ":1",
+    // Mors & Vitae
+    "om:vitae": ":1",
+    "om:mors": ":1",
+    // Metals
+    "om:gold": ":6",
+    "om:silver": ":5",
+    "om:copper": ":4",
+    "om:iron": ":3",
+    "om:tin": ":2",
+    "om:lead": ":1",
+    "om:quicksilver": ":1",
+    // Volatiles
+    "prima_cyclia:sulfur": ":0",
+    "prima_cyclia:oxygen": ":0",
+    "prima_cyclia:phlogiston": ":0"
+  }
+}

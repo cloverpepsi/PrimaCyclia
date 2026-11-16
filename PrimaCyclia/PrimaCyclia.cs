@@ -1,106 +1,30 @@
-﻿using MonoMod.RuntimeDetour;
-using MonoMod.Utils;
-using Quintessential;
-using Quintessential.Settings;
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
+﻿using Quintessential;
 using System.IO;
-using System.Reflection;
-﻿using Mono.Cecil.Cil;
-using MonoMod.Cil;
-using System.Linq;
-//using System.Reflection;
 
-using Texture = class_256;
+namespace PrimaCyclia;
 
-namespace PrimaCyclia {
+public class PrimaCyclia : QuintessentialMod {
+    public static PrimaCyclia Instance { get; }
+    public static Quintessential.Logging.Logger Logger => Instance.Log;
+    public override string ModId => "prima_cyclia";
+    
+    public override void Load() { }
 
-	public class PrimaCyclia : QuintessentialMod {
-    public static MethodInfo PrivateMethod<T>(string method) => typeof(T).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
-	
+    public override void LoadContent() {
+        Atoms.AddAtomTypes();
+        Parts.LoadSounds();
+        Parts.AddPartTypes();
+    }
+    public override void LoadCompatContent() { }
+    public override void FinaliseContent() { }
+    public override void PostLoad() { }
+    public override void Unload() { }
 
-	public static string FilePath = "";
-	public static QuintessentialMod MainClassAsMod;
-
-	public static Vector2 hexGraphicalOffset(HexIndex hex) => class_187.field_1742.method_492(hex);
-        public static bool findModMetaFilepath(string name, out string filepath)
-        {
-            filepath = "<missing mod directory>";
-            foreach (ModMeta mod in QuintessentialLoader.Mods)
-            {
-                if (mod.Name == name)
-                {
-                    filepath = mod.PathDirectory;
-                    return true;
-                }
-            }
-            return false;
+    public static Texture[] GetAnimation(string containingFolder, string frameBaseName, int frameCount, int padding = 4) {
+        Texture[] anim = new Texture[frameCount];
+        for (int i = 0; i < frameCount; i++) {
+            anim[i] = AssetLoaderHelper.LoadTexture(Path.Combine(containingFolder, frameBaseName) + "_" + (i + 1).ToString().PadLeft(padding, '0'));
         }
-
-		public override void Load()
-        {
-
-            string name = "PrimaCyclia";
-            foreach (ModMeta mod in QuintessentialLoader.Mods)
-            {
-                if (mod.Name == name)
-                {
-                    FilePath = mod.PathDirectory;
-                    break;
-                }
-            }
-    		MainClassAsMod = this;
-        }
-
-        public override void LoadPuzzleContent()
-        {
-            Atoms.AddAtomTypes();
-            Parts.LoadSounds();
-            Parts.AddPartTypes();
-
-            IL.SolutionEditorBase.method_1984 += drawWheelAtoms;
-        }
-        private static void drawWheelAtoms(ILContext il)
-        {
-            ILCursor cursor = new ILCursor(il);
-            // skip ahead to roughly where method_2015 is called
-            cursor.Goto(658);
-
-            // jump ahead to just after the method_2015 for-loop
-            if (!cursor.TryGotoNext(MoveType.After, instr => instr.Match(OpCodes.Ldarga_S))) return;
-
-            // load the SolutionEditorBase self and the class423 local onto the stack so we can use it
-            cursor.Emit(OpCodes.Ldarg_0);
-            cursor.Emit(OpCodes.Ldloc_0);
-            // then run the new code
-            cursor.EmitDelegate<Action<SolutionEditorBase, SolutionEditorBase.class_423>>((seb_self, class423) =>
-            {
-                if (seb_self.method_503() != enum_128.Stopped)
-                {
-                    var partList = seb_self.method_502().field_3919;
-                    foreach (var servin in partList.Where(x => x.method_1159() == Parts.Tolomeo))
-                    {
-                        Parts.drawTolomeoAtoms(seb_self, servin, class423.field_3959);
-                    }
-                }
-            });
-        }
-
-		public override void Unload()
-        {
-            Parts.Unload();
-        }
-
-		public override void PostLoad()
-        {
-            On.SolutionEditorBase.method_1997 += DrawPartSelectionGlows;
-        }
-
-        public void DrawPartSelectionGlows(On.SolutionEditorBase.orig_method_1997 orig, SolutionEditorBase seb_self, Part part, Vector2 pos, float alpha)
-        {
-            if (part.method_1159() == Parts.Tolomeo) Parts.drawSelectionGlow(seb_self, part, pos, alpha);
-            orig(seb_self, part, pos, alpha);
-        }
-	}
+        return anim;
+    }
 }

@@ -1,0 +1,14 @@
+{
+  "mod_id": "prima_cyclia",
+  "version": "0.1.0",
+  "mod_page_url": "https://github.com/cloverpepsi/PrimaCyclia",
+  "dll": "PrimaCyclia.dll",
+  "authors": [],
+  "icon": "",
+  "mappings": "",
+  "dependencies": {
+    "quintessential_core": "[0.10.1,)",
+    "quintessential_data": "[0.10.1,)"
+  },
+  "conflicts": []
+}
